@@ -1,10 +1,14 @@
-FROM debian:jessie
+FROM alpine:latest
 
 MAINTAINER Adrian Mouat <adrian.mouat@container-solutions.com>
-RUN apt-get update \
-    && apt-get install -y traceroute curl dnsutils netcat-openbsd jq nmap \ 
-                          net-tools \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+        iputils \
+        curl \
+        drill \
+        netcat-openbsd \
+        jq \
+        nmap \
+        net-tools
 
 COPY Dockerfile /Dockerfile
 LABEL org.label-schema.docker.dockerfile="/Dockerfile" \
